@@ -1,0 +1,10 @@
+.menu-item {
+    padding: 10px;
+    text-align: center;
+    vertical-align: center;
+}
+
+.menu {
+    vertical-align: middle;
+    height: 100%;
+}

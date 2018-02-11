@@ -1,0 +1,17 @@
+<div class="menu">
+    <div class="menu-item" *ngIf="game != null && game.gameState == 'RECRUITMENT'">
+        <button mat-raised-button color="primary" (click)="startGame()" type="button" class="btn btn-primary">Zacznij gre</button>
+    </div>
+    <div class="menu-item" *ngIf="game != null && game.gameState == 'IN_PROGRESS'">
+        <button mat-raised-button color="primary" (click)="startRecuritment()" type="button" class="btn btn-primary">Ponownie zacznij rekrutacje</button>
+    </div>
+    <div class="menu-item">
+        <button mat-raised-button [routerLink]="['/gameAddQuest', selectedGameNameParam]" type="button">Nowe zadanie</button>
+    </div>
+    <div class="menu-item">
+        <button mat-raised-button [routerLink]="['/gameAddMessage', selectedGameNameParam]" type="button">Nowa wiadomość</button>
+    </div>
+    <div class="menu-item">
+        <button mat-raised-button color="warn" type="button" (click)="finishGame()" class="btn btn-primary">Zakończ gre</button>
+    </div>
+</div>

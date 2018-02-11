@@ -1,0 +1,65 @@
+<form #questForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="select-width small-padding">
+        <mat-checkbox [(ngModel)]="useTemplate" [ngModelOptions]="{standalone: true}">Pokaż szablony</mat-checkbox>
+    </div>
+    <div class="select-width small-padding" *ngIf="useTemplate">
+        <mat-form-field>
+            <mat-select [style.width]="'100%'" id="selectedTemplate" placeholder="Szablon" [(ngModel)]="selectedTemplate" name="selectedTemplate" (change)="changeTemplate($event)">
+                <mat-option [value]="null">Pusty szablon</mat-option>
+                <mat-option *ngFor="let template of templateList" [value]="template">{{template.title}} - {{template.questType | questName}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="select-width small-padding">
+        <mat-form-field>
+            <mat-select [style.width]="'100%'" id="reciverType" placeholder="Rodzaj odbiorcy" required [(ngModel)]="quest.reciverType" name="type" (change)="questTypeChange($event)">
+                <mat-option value="team">grupowy</mat-option>
+                <mat-option value="player">indywidualny</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="select-width small-padding">
+        <mat-form-field>
+            <mat-select [style.width]="'100%'" id="questReciver" placeholder="Odbiorca" required [(ngModel)]="quest.reciver" name="reciver">
+                <mat-option *ngFor="let reciver of recivers" [value]="reciver.id">{{reciver.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="select-width small-padding">
+        <mat-form-field>
+            <mat-select [style.width]="'100%'" id="questType" placeholder="Rodzaj" required [(ngModel)]="quest.questType" name="questType">
+                <mat-option value="walkToDirection">dotrzyj do celu</mat-option>
+                <mat-option value="findArtifact">znajdź przedmiot</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="select-width small-padding" matTooltip="Promień w metrach jakim zadanie zostanie uznane" matTooltipPosition="right">
+        <label class="material-label" for="questRadius">Promień poszukiwań</label>
+        <mat-slider [style.width]="'100%'" placeholder="Promień poszukiwań" min="1" max="1000" thumbLabel step="1" value="7" required id="questRadius" [(ngModel)]="quest.radius" name="radius" #radius="ngModel"></mat-slider>
+    </div>
+    <div class="small-padding">
+        <mat-form-field matTooltip="Wybierz miejsce na mapie" matTooltipPosition="right">
+            <input placeholder="Współrzędne miejsca" matInput readonly required type="text" id="questCoordinates" [(ngModel)]="quest.cooidinates" name="questCoordinates" #questCoordinates="ngModel" />
+        </mat-form-field>
+    </div>
+    <div class="select-width small-padding" matTooltip="Liczba punktów za zadanie" matTooltipPosition="right">
+        <label class="material-label" for="questPoints">Punkty</label>
+        <mat-slider [style.width]="'100%'" min="1" max="10" thumbLabel step="1" value="5" required id="questPoints" [(ngModel)]="quest.points" name="questPoints" #questPoints="ngModel"></mat-slider>
+    </div>
+    <div class="small-padding">
+        <mat-form-field>
+            <input placeholder="Nazwa" matInput required type="text" id="questTitle" [(ngModel)]="quest.title" name="questTitle" #questTitle="ngModel" />
+        </mat-form-field>
+    </div>
+    <div class="small-padding">
+        <mat-form-field>
+            <textarea placeholder="Treść" matInput rows="3" id="questDescription" [(ngModel)]="quest.description" name="questDescription"></textarea>
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-raised-button [routerLink]="['/gameMenu', selectedGame]" type="button">Wróć</button>
+        <button mat-raised-button (click)="addQuestPreset()" type="button">Dodaj jako szablon</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!questForm.form.valid">Dodaj</button>
+    </div>
+
+</form>

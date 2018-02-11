@@ -1,0 +1,12 @@
+<div id="map_canvas">
+    <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)">
+        <agm-marker [latitude]="marker.lat" [longitude]="marker.lng"></agm-marker>
+        <agm-marker *ngFor="let m of playerMarkers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [iconUrl]="m.iconUrl" [markerDraggable]="false">
+            <agm-info-window>
+                <p><strong>Gracz: {{m.label}}</strong></p>
+                <p><strong>Punkty: {{m.points}}</strong></p>
+                <p><strong>Drużyna: {{m.team}}</strong></p>
+            </agm-info-window>
+        </agm-marker>
+    </agm-map>
+</div>

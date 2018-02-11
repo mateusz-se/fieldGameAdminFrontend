@@ -1,0 +1,20 @@
+.select-width {
+    width: 50%;
+}
+
+.small-padding {
+    padding: 5px;
+}
+
+.material-label {
+    color: rgba(0, 0, 0, .54);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: normal;
+}

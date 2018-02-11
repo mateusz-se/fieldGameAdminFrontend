@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Szablony</h2>
+<mat-dialog-content>
+    <mat-list>
+        <mat-list-item *ngFor="let questPreset of questPresets">
+            <h3 matLine> {{questPreset.title}} - {{questPreset.questType | questName}}</h3>
+            <p matLine>
+                <span> {{questPreset.description}} </span>
+            </p>
+            <p matLine>
+                <span>Promień {{questPreset.radius}}(m) </span>
+                <span>Punkty {{questPreset.points}}(m) </span>
+            </p>
+            <div matLine>
+                <button mat-button color="warn" (click)="removePreset(questPreset)">
+                Usuń
+              </button>
+            </div>
+        </mat-list-item>
+    </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Zamknij</button>
+</mat-dialog-actions>

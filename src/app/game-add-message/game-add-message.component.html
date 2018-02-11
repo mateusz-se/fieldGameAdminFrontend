@@ -1,0 +1,34 @@
+<form #messageForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="select-width small-padding">
+        <mat-form-field>
+            <mat-select [style.width]="'100%'" id="msgType" placeholder="Typ wiadomości" required [(ngModel)]="message.type" #type="ngModel" name="type" (change)="messageTypeChange($event)">
+                <mat-option value="all">Do wszystkich</mat-option>
+                <mat-option value="team">Do drużyny</mat-option>
+                <mat-option value="player">Do gracza</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </div>
+    <div [hidden]="!showReciverSelect" class="select-width small-padding">
+        <mat-form-field>
+            <mat-select [style.width]="'100%'" placeholder="Odbiorca" id="msgReciver" [required]="showReciverSelect" [(ngModel)]="message.reciver" name="reciver">
+                <mat-option *ngFor="let reciver of recivers" [value]="reciver.id">{{reciver.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="small-padding">
+        <mat-form-field>
+            <input placeholder="Tytuł" matInput required type="text" id="msgTitle" [(ngModel)]="message.title" name="title" #title="ngModel" />
+        </mat-form-field>
+    </div>
+    <div class="small-padding">
+        <mat-form-field>
+            <textarea placeholder="Treść" matInput rows="3" id="msgBody" required [(ngModel)]="message.body" name="body" #body="ngModel"></textarea>
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-raised-button [routerLink]="['/gameMenu', selectedGame]" type="button">Wróć</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!messageForm.form.valid">Wyślij</button>
+    </div>
+
+</form>

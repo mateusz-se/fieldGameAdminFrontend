@@ -1,0 +1,3 @@
+<div *ngFor="let team of currentGame.teams | notEmptyTeam" class="team-info-card">
+    <app-team-info [team]="team"></app-team-info>
+</div>

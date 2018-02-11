@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+    <span class="right-align"></span>
+    <a *ngIf="currentUser != null" class="status white" (click)="openQuestTemplateDialog()" style="cursor: pointer">
+        <mat-icon aria-hidden="true">watch_later</mat-icon>Szablony zadań</a>
+    <a *ngIf="currentUser != null" class="status white" style="cursor: pointer">
+        <mat-icon aria-hidden="true">account_circle</mat-icon> {{currentUser}}</a>
+    <a [routerLink]="['/login']" *ngIf="currentUser != null" class="status white" (click)="logOut()" style="cursor: pointer">
+        <mat-icon aria-hidden="true">exit_to_app</mat-icon>Wyloguj</a>
+</mat-toolbar>
+
+<div id="floating-panel">
+    <mat-card layout-align="center center" class="scrollable">
+        <mat-card-content layout-align="center center">
+            <alert></alert>
+            <router-outlet></router-outlet>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div id="log-floating-panel" class="wrapper">
+    <app-quest-info style="display: flex;" class="one white"></app-quest-info>
+    <app-teams-info style="display: flex;" class="two"></app-teams-info>
+</div>
+
+
+<app-map></app-map>

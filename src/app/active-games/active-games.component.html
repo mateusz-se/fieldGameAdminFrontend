@@ -1,0 +1,16 @@
+ Posiadzasz niezakończone gry. Kontynuj lub utwórz nową.
+<form (ngSubmit)="onSubmit()" #activeGameForm="ngForm">
+    <div>
+        <mat-form-field>
+            <mat-select placeholder="Wybierz gre" [(ngModel)]="selectedGame" name="selectedGame" style="width: 15em;">
+                <mat-option *ngFor="let game of games" [value]="game">{{game.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Kontynuj</button>
+    </div>
+</form>
+<form style="margin-top: 0.5em;">
+    <div>
+        <button mat-raised-button type="button" [routerLink]="['/gameSetup']">Stwórz nową</button>
+    </div>
+</form>

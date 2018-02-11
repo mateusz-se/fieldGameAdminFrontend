@@ -1,0 +1,18 @@
+<form (ngSubmit)="onSubmit()" #gameForm="ngForm">
+    <mat-form-field>
+        <input placeholder="Nazwa gry" matInput type="text" required id="gameName" required [(ngModel)]="game.name" name="name" #name="ngModel">
+    </mat-form-field>
+    <mat-form-field>
+        <input placeholder="Hasło" matInput type="password" required id="gamePassword" [(ngModel)]="game.password" name="password" #password="ngModel">
+    </mat-form-field>
+    <div>
+        <mat-checkbox [(ngModel)]="isSelectAll" name="isSelectAll" (ngModelChange)="selectAllTeams()"> Wybierz wszystkie</mat-checkbox>
+    </div>
+    <div *ngFor="let team of teamsMap">
+        <mat-checkbox [checked]="team.checked" [ngModelOptions]="{standalone: true}" [name]="team.teamId" [(ngModel)]="team.checked">
+            {{team.label}}
+            <span class="glyphicon glyphicon-one-fine-dot" [style.color]="team.name"></span>
+        </mat-checkbox>
+    </div>
+    <button mat-raised-button color="primary" type="submit" class="btn btn-default" [disabled]="!gameForm.form.valid">Dodaj</button>
+</form>
